@@ -24,7 +24,7 @@ Mu通用模板，个人前端自动化模板，包含合并，压缩，发布等
 
 ##今日任务##
 
-1. [X]完善package.json
+1. [X] 完善package.json
 2. 更改Gruntfile.js引用
 3. 图片压缩插件
 4. copy任务增加
