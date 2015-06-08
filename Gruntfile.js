@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     },
     uglify : {
       options : {
-        banner : '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> \n * 作者：小牧COOL \n * 版本：<%= pkg.version %> \n */' /* * QQ：895355044 \n  */
+        banner : '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> \n * 作者：<%= pkg.author.name %> \n * 版本：<%= pkg.version %> \n * 主页：<%= pkg.homepage %> \n */'
       },
       dist: {
         files: {
@@ -37,7 +37,7 @@ module.exports = function(grunt) {
     },
     cssmin: {
       options : {
-        banner : '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> \n * 作者：小牧COOL \n * 版本：<%= pkg.version %> \n */'
+        banner : '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> \n * 作者：<%= pkg.author.name %> \n * 版本：<%= pkg.version %> \n * 主页：<%= pkg.homepage %> \n */'
       },
       svn: {
         src: '<%= concat.css.dest %>',
