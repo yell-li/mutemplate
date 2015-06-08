@@ -1,0 +1,83 @@
+@charset "UTF-8";
+/* 自定义变量 */
+/* 全局类和方法 */
+.wrap {
+  min-width: 320px;
+  max-width: 640px;
+  width: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+  font-family: "微软雅黑", "宋体", Arial, Helvetica, sans-serif;
+  overflow: hidden;
+  position: relative;
+  background: #ccc; }
+
+.wrap-color {
+  background: #b51623; }
+
+.main {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative; }
+
+/* page 1 */
+.p1 {
+  display: block; }
+
+.p1-an1 {
+  position: absolute;
+  top: 10%;
+  left: 35%;
+  width: 30%;
+  height: auto;
+  z-index: 89;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-animation-name: ani-down;
+  /*动画属性名，也就是我们前面keyframes定义的动画名*/
+  -webkit-animation-duration: 0.8s;
+  /*动画持续时间*/
+  -webkit-animation-delay: 0s;
+  /*动画延迟时间*/
+  -webkit-animation-iteration-count: 1;
+  /*定义循环资料，infinite为无限次*/
+  -webkit-animation-fill-mode: none;
+  /* forwards 固定在最后一帧| backwards 固定在第一帧*/ }
+
+.p1-an2 {
+  position: absolute;
+  top: 41%;
+  left: 0%;
+  width: 100%;
+  height: auto;
+  z-index: 89;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-animation-name: ani-up;
+  /*动画属性名，也就是我们前面keyframes定义的动画名*/
+  -webkit-animation-duration: 1s;
+  /*动画持续时间*/
+  -webkit-animation-delay: 0s;
+  /*动画延迟时间*/
+  -webkit-animation-iteration-count: 1;
+  /*定义循环资料，infinite为无限次*/
+  -webkit-animation-fill-mode: none;
+  /* forwards 固定在最后一帧| backwards 固定在第一帧*/ }
+
+/* 动画定义 */
+@-webkit-keyframes bg {
+  0% {
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3); }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1); } }
+@-webkit-keyframes p1-an1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(20deg);
+    transform: rotate(20deg); } }
+
+/*# sourceMappingURL=style.css.map */
