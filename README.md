@@ -26,10 +26,11 @@ Mu通用模板，个人前端自动化模板，包含合并，压缩，发布等
 
 ##注意事项##
 
-1. 'grunt-contrib-imagemin' 插件安装失败解决方法:
+- 'grunt-contrib-imagemin' 插件安装失败解决方法:
 
-    1.1 更新至最新版[NPM 2.x.x](https://github.com/npm/npm)
-    1.2 在其之前添加依赖模块'"jpegtran-bin": "^3.0.1"'
+    - 更新至最新版[NPM 2.x.x](https://github.com/npm/npm)
+    
+    - 在其之前添加依赖模块'"jpegtran-bin": "^3.0.1"'
 
 ##今日任务##
 
