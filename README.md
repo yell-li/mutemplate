@@ -24,13 +24,30 @@ Mu通用模板，个人前端自动化模板，包含合并，压缩，发布等
 - grunt-css
 - grunt-replace
 
+##使用方法##
+
+1. 监控sass文件修改,运行
+
+    grunt w
+
+2. 发布release版本,运行
+
+    grunt
+
+3. 部署到指定svn或git,修改 `Gruntfile.js` 里的路径后,运行
+
+    grunt svn
+    
+
 ##注意事项##
 
 - `grunt-contrib-imagemin` 插件安装失败解决方法:
 
     - 更新至最新版[NPM 2.x.x](https://github.com/npm/npm)
 
-    - 在其之前添加依赖模块 `"jpegtran-bin": "^3.0.1"`
+    - 在其之前添加依赖模块 `npm install jpegtran-bin --save-dev`
+
+      然后再运行 `npm install grunt-contrib-imagemin --save-dev`
 
 ##今日任务##
 
