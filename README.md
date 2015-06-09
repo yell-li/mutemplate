@@ -24,10 +24,18 @@ Mu通用模板，个人前端自动化模板，包含合并，压缩，发布等
 - grunt-css
 - grunt-replace
 
+##注意事项##
+
+1. 'grunt-contrib-imagemin' 插件安装失败解决方法:
+
+    1.1 更新至最新版[NPM 2.x.x](https://github.com/npm/npm)
+    1.2 在其之前添加依赖模块'"jpegtran-bin": "^3.0.1"'
+
 ##今日任务##
 
-1.  [X] 完善package.json
-2.  [X] 更改Gruntfile.js引用
-3. 图片压缩插件
-4. copy任务增加
-5. 配置任务
+- [X] 完善package.json
+- [X] 更改Gruntfile.js引用
+- [X] 图片压缩插件
+- [X] copy任务增加
+- [X] 配置任务
+- [X] 注意事项

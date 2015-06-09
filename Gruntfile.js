@@ -30,7 +30,11 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'release/js/<%= pkg.name %>.min.js': ['<%= concat.js.dest %>'],
+          'release/js/<%= pkg.name %>.min.js': ['<%= concat.js.dest %>']
+        }
+      },
+      svn:{
+        files:{
           '<%= meta.jsSvnAbsPath %><%= pkg.name %>_min.js': ['<%= concat.js.dest %>']
         }
       }
@@ -39,11 +43,11 @@ module.exports = function(grunt) {
       options : {
         banner : '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd HH:MM:ss") %> \n * 作者：<%= pkg.author.name %> \n * 版本：<%= pkg.version %> \n * 主页：<%= pkg.homepage %> \n */'
       },
-      svn: {
+      dist: {
         src: '<%= concat.css.dest %>',
         dest: 'release/css/<%= pkg.name %>.min.css'
       },
-      dist: {
+      svn: {
         src: '<%= concat.css.dest %>',
         dest: '<%= meta.cssSvnAbsPath %><%= pkg.name %>_min.css'
       }
@@ -53,39 +57,40 @@ module.exports = function(grunt) {
       options:{
         force: true
       },
-      rel: ["dest/*", "!dest/jquery-**.js",".sass-cache/**","release/*"],
+      dist: ["dest/*", "!dest/jquery-**.js",".sass-cache/**","release/*"],
       svn: ['<%= meta.cssSvnAbsPath %>**','<%= meta.jsSvnAbsPath %>**','<%= meta.imgSvnAbsPath %>**','<%= meta.htmlSvnAbsPath %>**']
     },
     copy: {
-      main: {
-        files: [
-        {
+      dist: {
+        files: [{
           expand: true,
           src: ['*.html','*.php'],
           dest: 'release/'
         },
-        {
-          expand: true, 
-          src: ['img/**'], 
-          dest: 'release/'
-        },
+        // {
+        //   expand: true, 
+        //   src: ['img/**'], 
+        //   dest: 'release/'
+        // },
         {
           expand: true,
           cwd:'dest/',
           src: ['jquery-**.js'], 
           dest: 'release/js/'
-        },
-        {
+        }]
+      },
+      svn:{
+        files: [{
           expand: true, 
           src: ['*.html','*.php'], 
           dest: '<%= meta.htmlSvnAbsPath %>'
         },
-        {
-          expand: true,
-          cwd:'img/',
-          src: ['**'], 
-          dest: '<%= meta.imgSvnAbsPath %>'
-        }
+        // {
+        //   expand: true,
+        //   cwd:'img/',
+        //   src: ['**'], 
+        //   dest: '<%= meta.imgSvnAbsPath %>'
+        // }
         ]
       }
     },
@@ -94,7 +99,7 @@ module.exports = function(grunt) {
     //   svnHtml: '<%= meta.htmlSvnAbsPath %>*.html'
     // },
     usemin: {
-      html: {
+      dist: {
         src: 'release/*.html',
         options: {
           blockReplacements: {
@@ -111,7 +116,7 @@ module.exports = function(grunt) {
           }
         }
       },
-      svnHtml: {
+      svn: {
         src: '<%= meta.htmlSvnAbsPath %>*.html',
         options: {
           blockReplacements: {
@@ -130,7 +135,7 @@ module.exports = function(grunt) {
       }
     },
     replace: {
-      dist: {
+      svn: {
         options: {
           patterns: [
             {
@@ -143,26 +148,35 @@ module.exports = function(grunt) {
           {
             expand: true, 
             flatten: true, 
-            src: ['<%= meta.htmlSvnAbsPath %>*.html']
+            src: '<%= meta.htmlSvnAbsPath %>*.html',
+            dest:'<%= meta.htmlSvnAbsPath %>'
           }
         ]
       }
     },
-    // imagemin: {
-    //   dist: {
-    //     options: {
-    //       optimizationLevel: 3,
-    //       // svgoPlugins: [{ removeViewBox: false }],
-    //       // use: [mozjpeg()]
-    //     },
-    //     files: [{
-    //       expand: true,
-    //       cwd: 'img/',
-    //       src: ['**/*.{png,jpg,gif}'],
-    //       dest: 'release/img/'
-    //     }]
-    //   }
-    // },
+    imagemin: {
+      options: {
+        optimizationLevel: 3,
+        // svgoPlugins: [{ removeViewBox: false }],
+        // use: [mozjpeg()]
+      },
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'img/',
+          src: ['**/*.{png,jpg,gif}'],
+          dest: 'release/img/'
+        }]
+      },
+      svn:{
+        files: [{
+          expand: true,
+          cwd: 'img/',
+          src: ['**/*.{png,jpg,gif}'],
+          dest: '<%= meta.imgSvnAbsPath %>'
+        }]
+      }
+    },
     sass: {
       dist: {
         files: {
@@ -174,8 +188,18 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      files: ['<%= meta.srcPath %>/**/*.scss','./**/*.css','./js/**/*.js'],
-      tasks: ['sass','concat','uglify','cssmin']
+      sass:{
+        files: ['<%= meta.srcPath %>/**/*.scss','./**/*.css','./js/**/*.js'],
+        tasks: ['sass']
+      },
+      dist:{
+        files: ['<%= meta.srcPath %>/**/*.scss','./**/*.css','./js/**/*.js'],
+        tasks: ['sass','concat','uglify:dist','cssmin:dist','copy:dist','imagemin:dist','usemin:dist']
+      },
+      dist:{
+        files: ['<%= meta.srcPath %>/**/*.scss','./**/*.css','./js/**/*.js'],
+        tasks: ['sass','concat','uglify:svn','cssmin:svn','copy:svn','imagemin:svn','usemin:svn','replace:svn']
+      }
     }
   });
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -187,12 +211,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-replace');
-  // grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
 
-  grunt.registerTask('w', ['watch']);
-  grunt.registerTask('c', ['clean:svn']);
-  // grunt.registerTask('u', ['replace']);
-  // grunt.registerTask('all', ['sass','useminPrepare','concat','uglify','cssmin','copy','usemin']);
-  // grunt.registerTask('two', ['useminPrepare','usemin']);
-  grunt.registerTask('default', ['concat', 'uglify','cssmin']);
+  grunt.registerTask('w', ['watch:sass']);
+  grunt.registerTask('c', ['clean']);
+  grunt.registerTask('all', ['clean','sass','concat','uglify','cssmin','copy','imagemin','usemin','replace']);
+  grunt.registerTask('svn', ['concat','uglify:svn','cssmin:svn','copy:svn','imagemin:svn','usemin:svn','replace:svn']);
+  grunt.registerTask('default', ['concat','uglify:dist','cssmin:dist','copy:dist','imagemin:dist','usemin:dist']);
 };
