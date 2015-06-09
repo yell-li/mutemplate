@@ -28,16 +28,16 @@ Mu通用模板，个人前端自动化模板，包含合并，压缩，发布等
 
 1. 监控sass文件修改,运行
 
-    grunt w
+        grunt w
 
 2. 发布release版本,运行
 
-    grunt
+      grunt
 
 3. 部署到指定svn或git,修改 `Gruntfile.js` 里的路径后,运行
 
-    grunt svn
-    
+      grunt svn
+
 
 ##注意事项##
 
