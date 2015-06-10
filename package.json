@@ -41,14 +41,13 @@
     "grunt-contrib-clean": "*",
     "grunt-contrib-concat": "*",
     "grunt-contrib-copy": "*",
-    "grunt-contrib-imagemin": "^0.9.4",
+    "grunt-contrib-imagemin": "*",
     "grunt-contrib-sass": "*",
     "grunt-contrib-uglify": "*",
     "grunt-contrib-watch": "*",
     "grunt-css": "*",
     "grunt-replace": "*",
-    "grunt-usemin": "*",
-    "jpegtran-bin": "^3.0.1"
+    "grunt-usemin": "*"
   },
   "readme": "ERROR: No README data found!"
 }

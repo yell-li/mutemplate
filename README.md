@@ -51,7 +51,11 @@ Mu通用模板，个人前端自动化模板，包含合并，压缩，发布等
 
     - 在其之前添加依赖模块 `npm install jpegtran-bin --save-dev`
 
-      然后再运行 `npm install grunt-contrib-imagemin --save-dev`
+      删除后然后再运行 `npm install grunt-contrib-imagemin --save-dev`
+
+    - 终极方法:解压 `tools` 中的 `grunt-contrib-imagemin.7z` 文件至 `node_modules`文件夹中
+
+      此插件路径过长,必须要用 `7-ZipPortable` 解压.
 
 ##今日任务##
 
