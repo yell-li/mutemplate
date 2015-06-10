@@ -196,7 +196,7 @@ module.exports = function(grunt) {
         files: ['<%= meta.srcPath %>/**/*.scss','./**/*.css','./js/**/*.js'],
         tasks: ['sass','concat','uglify:dist','cssmin:dist','copy:dist','imagemin:dist','usemin:dist']
       },
-      dist:{
+      svn:{
         files: ['<%= meta.srcPath %>/**/*.scss','./**/*.css','./js/**/*.js'],
         tasks: ['sass','concat','uglify:svn','cssmin:svn','copy:svn','imagemin:svn','usemin:svn','replace:svn']
       }
